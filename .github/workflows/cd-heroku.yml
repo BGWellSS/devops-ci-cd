@@ -2,6 +2,7 @@ name: CD to Heroku
 on:
   push:
     branches: [ main ]
+
 jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
@@ -10,8 +11,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install
+
+      - run: npm ci
       - run: npm test
+
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+
+      - name: Check Heroku CLI
+        run: heroku --version
+
       - name: Deploy para o Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
