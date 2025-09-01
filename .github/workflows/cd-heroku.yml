@@ -12,14 +12,11 @@ jobs:
         with:
           node-version: '20'
 
-      - run: npm ci
-      - run: npm test
+      - name: Instalar dependências
+        run: npm install
 
-      - name: Install Heroku CLI
-        run: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-
-      - name: Check Heroku CLI
-        run: heroku --version
+      - name: Executar testes
+        run: npm test
 
       - name: Deploy para o Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
