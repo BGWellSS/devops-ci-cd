@@ -11,7 +11,6 @@ app.get('/health', (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-// Export for tests; only start server if file is executed directly
 if (require.main === module) {
   app.listen(port, () => console.log(`Server running on port ${port}`));
 }
